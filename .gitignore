@@ -2,7 +2,7 @@
 node_modules/
 
 # extension builds
-.vsix
+*.vsix
 
 # Visual Studio Code
 .vscode/*

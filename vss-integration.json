@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum integration",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "kagilum",
     "targets": [
         {
