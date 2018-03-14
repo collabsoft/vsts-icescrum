@@ -1,8 +1,15 @@
-# npm
+dist/
+bower_components/
 node_modules/
 
-# extension builds
+# Custom extension manifest
+extension-*.json
+
+# VSIX Packages (vset output)
 *.vsix
+
+#npm log
+npm-debug.log
 
 # Visual Studio Code
 .vscode/*
