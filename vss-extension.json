@@ -1,0 +1,36 @@
+{
+    "manifestVersion": 1,
+    "id": "icescrum-build-notify",
+    "name": "iceScrum integration",
+    "version": "0.1.0",
+    "publisher": "kagilum",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for integrating with iceScrum. Includes one build task.",
+    "categories": [
+        "Build and release"
+    ],
+    "icons": {
+        "default": "images/icescrum-logo.jpg"        
+    },
+    "files": [
+        {
+            "path": "notifyIceScrumTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "icescrum-build-notify",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "notifyIceScrumTask"
+            }
+        }
+    ]
+}
