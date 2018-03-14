@@ -1,0 +1,24 @@
+{
+  "name": "vsts-icescrum",
+  "version": "1.0.0",
+  "description": "iceScrum extension for Visual Studio Team Service.",
+  "main": "index.js",
+  "dependencies": {
+    "vss-web-extension-sdk": "^5.127.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icescrum/vsts-icescrum.git"
+  },
+  "keywords": [
+    "vsts",
+    "icescrum"
+  ],
+  "author": "@cbontemps",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icescrum/vsts-icescrum/issues"
+  },
+  "homepage": "https://github.com/icescrum/vsts-icescrum#readme"
+}
