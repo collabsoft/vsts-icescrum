@@ -7,7 +7,7 @@
     "description": "iceScrum is an opensource scrum tool for agile software development",
     "targets": [
         {
-            "id": "Microsoft.VisualStudio.Services"
+            "id": "Microsoft.VisualStudio.Services.Integration"
         }
     ],
     "categories": [
