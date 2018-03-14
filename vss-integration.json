@@ -4,17 +4,46 @@
     "name": "iceScrum integration",
     "version": "0.1.1",
     "publisher": "kagilum",
+    "description": "iceScrum is an opensource scrum tool for agile software development",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
-    ],    
-    "description": "Tools for integrating with iceScrum. Includes one build task.",
-    "categories": [
-        "Build and release"
     ],
+    "categories": [
+        "Plan and track", 
+        "Collaborate",
+        "Integrate"
+    ],
+    "tags": [
+        "agile",
+        "scrum",
+        "project management",
+        "roadmap"
+    ],
+    "screenshots": [],
     "icons": {
-        "default": "images/icescrum-logo.jpg"        
+        "default": "images/icescrum-logo.jpg"
+    },
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://www.icescrum.com/features/"
+        },
+        "learn": {
+            "uri": "https://www.icescrum.com/documentation/"
+        },
+        "support": {
+            "uri": "https://www.visualstudio.com/team-services/support/"
+        }
+    },
+    "branding": {
+        "color": "#5CA8DB",
+        "theme": "dark"
     },
     "files": [
         {
