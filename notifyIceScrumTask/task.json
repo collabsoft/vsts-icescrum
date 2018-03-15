@@ -24,7 +24,7 @@
     ],
     "inputs": [
         {
-            "name": "projecturl",
+            "name": "projectUrl",
             "type": "string",
             "label": "Project URL",
             "defaultValue": "https://cloud.icescrum.com/p/YOURPROJECT",
@@ -32,7 +32,7 @@
             "helpMarkDown": "This is your iceScrum project URL"
         },
         {
-            "name": "accesstoken",
+            "name": "accessToken",
             "type": "string",
             "label": "Access token",
             "defaultValue": "",
@@ -40,18 +40,29 @@
             "helpMarkDown": "Learn how to generate an iceScrum access token: https://www.icescrum.com/documentation/rest-api/#authentication"
         },
         {
-            "name": "samplebool",
-            "type": "boolean",
-            "label": "Sample Boolean",
-            "defaultValue": "false",
+            "name": "maxChanges",
+            "type": "integer",
+            "label": "Maximum Changeset/Commits to return",
+            "defaultValue": "99",
             "required": false,
-            "helpMarkDown": "If this is true, this task will fail if any errors are written to the StandardError stream.",
+            "helpMarkDown": "The maximum number of Changesets/Commits to send to iceScrum",
             "groupName": "advanced"
-        }
+        },
+        {
+            "name": "usedefaultcreds",
+            "type": "boolean",
+            "label": "Use default credentials",
+            "defaultValue": "False",
+            "required": false,
+            "helpMarkDown": "If true will use the credentials of the running agent as opposed to access token provided by build service.",
+            "groupName": "advanced"
+      }
     ],
     "execution": {
-        "Node": {
-            "target": "index.js"
-        }
+        "PowerShell": {
+            "target": "$(currentDirectory)\\notifyIceScrum.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
+      }
     }
 }
