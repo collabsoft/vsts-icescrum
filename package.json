@@ -7,7 +7,7 @@
     "vss-web-extension-sdk": "^5.127.0"
   },
   "scripts": {
-    "install": "tfx extension create --manifest-globs vss-integration.json --rev-version"
+    "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
   "devDependencies": {},
   "repository": {
