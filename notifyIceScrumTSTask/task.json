@@ -1,5 +1,5 @@
 {
-    "id": "aa614562-18ba-4e3d-bb76-676101abf82c",
+    "id": "8fc5bab6-7d3d-44f6-bdc0-8ccccbb8f1b1",
     "name": "icescrum-build-notify",
     "friendlyName": "Notify iceScrum",
     "description": "Notify iceScrum of build status. This let iceScrum display build status and which user stories are available in this build. The product owner will be able to retrieve the last successful build for a given user story.",
@@ -12,7 +12,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 6
+        "Patch": 7
     },
     "instanceNameFormat": "Notify iceScrum",
     "groups": [
