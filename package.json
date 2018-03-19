@@ -8,24 +8,24 @@
     "vss-web-extension-sdk": "^5.131.0",
     "vsts-task-lib": "^2.3.0"
   },
-  "scripts": {
-    "preinstall": "tsc",
-    "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
-  },
   "devDependencies": {
     "@types/node": "^9.4.7",
     "@types/q": "^1.0.7"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/icescrum/vsts-icescrum.git"
+  "scripts": {
+    "preinstall": "tsc",
+    "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
+  "author": "Kagilum",
+  "license": "MIT",
   "keywords": [
     "vsts",
     "icescrum"
   ],
-  "author": "@cbontemps",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icescrum/vsts-icescrum.git"
+  },
   "bugs": {
     "url": "https://github.com/icescrum/vsts-icescrum/issues"
   },
