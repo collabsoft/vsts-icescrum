@@ -4,12 +4,17 @@
   "description": "iceScrum extension for Visual Studio Team Service.",
   "main": "index.js",
   "dependencies": {
-    "vss-web-extension-sdk": "^5.127.0"
+    "vso-node-api": "^6.3.2",
+    "vss-web-extension-sdk": "^5.127.0",
+    "vsts-task-lib": "^2.3.0"
   },
   "scripts": {
     "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^9.4.7",
+    "@types/q": "^1.0.7"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icescrum/vsts-icescrum.git"

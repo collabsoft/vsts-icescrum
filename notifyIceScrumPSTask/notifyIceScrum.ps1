@@ -1,9 +1,9 @@
 # freely inspired from: https://github.com/rfennell/vNextBuild
 param(
-    [parameter]$projectUrl,
-    [parameter]$accessToken, 
-    [parameter]$maxChanges,
-    [parameter]$usedefaultcreds
+    [string]$projectUrl,
+    [string]$accessToken, 
+    [int]$maxChanges,
+    [bool]$usedefaultcreds
 )
 
 Write-Verbose "Entering script notifyIceScrum.ps1"
