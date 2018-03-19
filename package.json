@@ -4,9 +4,7 @@
   "description": "iceScrum extension for Visual Studio Team Service.",
   "main": "index.js",
   "dependencies": {
-    "vso-node-api": "^6.3.2",
-    "vss-web-extension-sdk": "^5.131.0",
-    "vsts-task-lib": "^2.3.0"
+    "vss-web-extension-sdk": "^5.131.0"
   },
   "devDependencies": {
     "@types/node": "^9.4.7",

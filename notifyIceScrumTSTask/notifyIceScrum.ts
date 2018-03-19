@@ -1,4 +1,3 @@
-import path = require('path');
 import tl = require('vsts-task-lib/task');
 import api = require('vso-node-api');
 
