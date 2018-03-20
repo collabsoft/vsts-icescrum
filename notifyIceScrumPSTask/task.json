@@ -56,13 +56,13 @@
             "required": false,
             "helpMarkDown": "If true will use the credentials of the running agent as opposed to access token provided by build service.",
             "groupName": "advanced"
-      }
+        }
     ],
     "execution": {
         "PowerShell": {
             "target": "$(currentDirectory)\\notifyIceScrum.ps1",
             "argumentFormat": "",
             "workingDirectory": "$(currentDirectory)"
-      }
+        }
     }
 }

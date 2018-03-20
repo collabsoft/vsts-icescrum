@@ -24,12 +24,20 @@
     ],
     "inputs": [
         {
-            "name": "projectUrl",
+            "name": "serverUrl",
             "type": "string",
             "label": "Project URL",
-            "defaultValue": "https://cloud.icescrum.com/p/YOURPROJECT",
+            "defaultValue": "https://cloud.icescrum.com/",
             "required": true,
-            "helpMarkDown": "This is your iceScrum project URL"
+            "helpMarkDown": "This is your iceScrum server base URL. Leave default value if you use iceScrum Cloud."
+        },
+        {
+            "name": "projectName",
+            "type": "string",
+            "label": "Project URL",
+            "defaultValue": "PEETIC",
+            "required": true,
+            "helpMarkDown": "This is your iceScrum project key. It is part of the URL of your iceScrum project dahsboard."
         },
         {
             "name": "accessToken",
@@ -46,6 +54,15 @@
             "defaultValue": "99",
             "required": false,
             "helpMarkDown": "The maximum number of Changesets/Commits to send to iceScrum",
+            "groupName": "advanced"
+        },
+        {
+            "name": "personnalAccessToken",
+            "type": "string",
+            "label": "Personnal Access Token",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Provide a Personnal access to token for use internal API calls. Here for testing extension.",
             "groupName": "advanced"
         }
     ],
