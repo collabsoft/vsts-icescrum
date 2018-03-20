@@ -11,6 +11,7 @@
     "@types/q": "^1.0.7"
   },
   "scripts": {
+    "test": "./test.sh",
     "preinstall": "tsc",
     "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
