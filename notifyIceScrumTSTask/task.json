@@ -26,7 +26,7 @@
         {
             "name": "serverUrl",
             "type": "string",
-            "label": "Project URL",
+            "label": "Server base URL",
             "defaultValue": "https://cloud.icescrum.com/",
             "required": true,
             "helpMarkDown": "This is your iceScrum server base URL. Leave default value if you use iceScrum Cloud."
@@ -34,7 +34,7 @@
         {
             "name": "projectName",
             "type": "string",
-            "label": "Project URL",
+            "label": "Project Name",
             "defaultValue": "PEETIC",
             "required": true,
             "helpMarkDown": "This is your iceScrum project key. It is part of the URL of your iceScrum project dahsboard."
