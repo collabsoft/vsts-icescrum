@@ -49,7 +49,7 @@ async function run() {
     let changes: bi.Change[] = await vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
 
     // Parse iceScrum tasks references in commits/changeset
-    let regexp: RegExp = /T(\d+)[^0-9]/g
+    let regexp: RegExp = /T(\d+)([^0-9]|$)/g
     let corresp;
     let tasks: number[] = []
     changes.forEach((change: bi.Change) => {

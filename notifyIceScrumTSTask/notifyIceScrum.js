@@ -59,7 +59,7 @@ function run() {
         let build = yield vstsBuild.getBuild(buildID, teamProject);
         let changes = yield vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
         // Parse iceScrum tasks references in commits/changeset
-        let regexp = /T(\d+)[^0-9]/g;
+        let regexp = /T(\d+)([^0-9]|$)/g;
         let corresp;
         let tasks = [];
         changes.forEach((change) => {
