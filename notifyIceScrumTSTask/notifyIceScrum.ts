@@ -7,12 +7,11 @@ import ifm from 'typed-rest-client/Interfaces';
 
 async function run() {
     // Retrieve build parameters and environment variables
-    const serverUrl: string = tl.getInput('serverUrl', true);
-    const projectName: string = tl.getInput('projectName', true);
+    let projectUrl: string = tl.getInput('projectUrl', true);
     const accessToken: string = tl.getInput('accessToken', true);
     const maxChanges: string = tl.getInput('maxChanges', false);
     const personnalAccessToken: string = tl.getInput('personnalAccessToken', false);
-    
+
     // Retrieve environment variables
     const buildID: number = +tl.getVariable('build.buildId');
     const releaseId: number = +tl.getVariable('release.releaseId');
@@ -20,8 +19,7 @@ async function run() {
     const teamProject: string = tl.getVariable('system.teamProject');
     const jobStatus: string = tl.getVariable('agent.jobstatus');
 
-    tl.debug('[input] serverUrl: ' + serverUrl);
-    tl.debug('[input] projectName: ' + projectName);
+    tl.debug('[input] projectUrl: ' + projectUrl);
     tl.debug('[input] accessToken: ' + accessToken);
     tl.debug('[input] maxChanges: ' + maxChanges);
     tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
@@ -51,12 +49,12 @@ async function run() {
     let changes: bi.Change[] = await vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
 
     // Parse iceScrum tasks references in commits/changeset
-    let regexp: RegExp = /T(\d+)([^0-9]|$)/g
+    let taskRegexp: RegExp = /T(\d+)([^0-9]|$)/g
     let corresp;
     let tasks: number[] = []
     changes.forEach((change: bi.Change) => {
         tl.debug('[icescrum] include commits/changeset: ' + change.id + 'with message: ' + change.message);
-        while ((corresp = regexp.exec(change.message)) !== null) {
+        while ((corresp = taskRegexp.exec(change.message)) !== null) {
             tasks.push(+corresp[1]);
         }
     });
@@ -80,9 +78,24 @@ async function run() {
         }
     }
 
+    // compute iceScrum REST API url from input params
+    let projectName;
+    let serverUrl;
+    let projectUrlRegexp: RegExp = /^((http|https):\/\/.+)\/p\/([0-9A-Z]*)/
+    if ((corresp = projectUrlRegexp.exec(projectUrl)) !== null) {
+        serverUrl = corresp[1];
+        projectName = corresp[3];
+    } else {
+        tl.error(`[icescrum] Invalid input string for projectUrl parameter: ${projectUrl}`);
+        tl.error(`[icescrum] projectUrl is expected to match /^((http|https):\/\/.+)\/p\/([0-9A-Z]*)/`);
+        tl.setResult(tl.TaskResult.Failed, 'Invalid input string for Project URL parameter.');
+    }
+    tl.debug('[icescrum] serverUrl: ' + serverUrl);
+    tl.debug('[icescrum] projectName: ' + projectName);
+    const postUrl = serverUrl + '/ws/project/' + projectName + '/build/vsts';
+
     // Post build info to iceScrum
-    const projectUrl = serverUrl + '/ws/project/' + projectName + '/build/vsts';
-    tl.debug('[icescrum] post to icescrum url: ' + projectUrl);
+    tl.debug('[icescrum] post to icescrum url: ' + postUrl);
     tl.debug('[icescrum] post to icescrum data: ' + JSON.stringify(builds));
     let _http: httpm.HttpClient = new httpm.HttpClient('icescrum-http-client');
     let requestHeaders: any = {
@@ -91,7 +104,7 @@ async function run() {
     }
     let res: httpm.HttpClientResponse = await _http.post(projectUrl, JSON.stringify(builds), requestHeaders);
     let body: string = await res.readBody();
-    if ((res.message.statusCode !== 200) && (res.message.statusCode !==201)) {
+    if ((res.message.statusCode !== 200) && (res.message.statusCode !== 201)) {
         tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
         tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
         tl.error('[icescrum] post response body: ' + body);

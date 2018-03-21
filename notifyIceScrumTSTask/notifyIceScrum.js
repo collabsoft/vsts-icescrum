@@ -21,8 +21,7 @@ const httpm = __importStar(require("typed-rest-client/HttpClient"));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         // Retrieve build parameters and environment variables
-        const serverUrl = tl.getInput('serverUrl', true);
-        const projectName = tl.getInput('projectName', true);
+        let projectUrl = tl.getInput('projectUrl', true);
         const accessToken = tl.getInput('accessToken', true);
         const maxChanges = tl.getInput('maxChanges', false);
         const personnalAccessToken = tl.getInput('personnalAccessToken', false);
@@ -32,8 +31,7 @@ function run() {
         const collectionUrl = tl.getVariable('system.teamFoundationCollectionUri');
         const teamProject = tl.getVariable('system.teamProject');
         const jobStatus = tl.getVariable('agent.jobstatus');
-        tl.debug('[input] serverUrl: ' + serverUrl);
-        tl.debug('[input] projectName: ' + projectName);
+        tl.debug('[input] projectUrl: ' + projectUrl);
         tl.debug('[input] accessToken: ' + accessToken);
         tl.debug('[input] maxChanges: ' + maxChanges);
         tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
@@ -61,12 +59,12 @@ function run() {
         let build = yield vstsBuild.getBuild(buildID, teamProject);
         let changes = yield vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
         // Parse iceScrum tasks references in commits/changeset
-        let regexp = /T(\d+)([^0-9]|$)/g;
+        let taskRegexp = /T(\d+)([^0-9]|$)/g;
         let corresp;
         let tasks = [];
         changes.forEach((change) => {
             tl.debug('[icescrum] include commits/changeset: ' + change.id + 'with message: ' + change.message);
-            while ((corresp = regexp.exec(change.message)) !== null) {
+            while ((corresp = taskRegexp.exec(change.message)) !== null) {
                 tasks.push(+corresp[1]);
             }
         });
@@ -89,9 +87,24 @@ function run() {
                 'url': build._links.web.href
             }
         };
+        // compute iceScrum REST API url from input params
+        let projectName;
+        let serverUrl;
+        let projectUrlRegexp = /^((http|https):\/\/.+)\/p\/([0-9A-Z]*)/;
+        if ((corresp = projectUrlRegexp.exec(projectUrl)) !== null) {
+            serverUrl = corresp[1];
+            projectName = corresp[3];
+        }
+        else {
+            tl.error(`[icescrum] Invalid input string for projectUrl parameter: ${projectUrl}`);
+            tl.error(`[icescrum] projectUrl is expected to match /^((http|https):\/\/.+)\/p\/([0-9A-Z]*)/`);
+            tl.setResult(tl.TaskResult.Failed, 'Invalid input string for Project URL parameter.');
+        }
+        tl.debug('[icescrum] serverUrl: ' + serverUrl);
+        tl.debug('[icescrum] projectName: ' + projectName);
+        const postUrl = serverUrl + '/ws/project/' + projectName + '/build/vsts';
         // Post build info to iceScrum
-        const projectUrl = serverUrl + '/ws/project/' + projectName + '/build/vsts';
-        tl.debug('[icescrum] post to icescrum url: ' + projectUrl);
+        tl.debug('[icescrum] post to icescrum url: ' + postUrl);
         tl.debug('[icescrum] post to icescrum data: ' + JSON.stringify(builds));
         let _http = new httpm.HttpClient('icescrum-http-client');
         let requestHeaders = {

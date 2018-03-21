@@ -24,20 +24,12 @@
     ],
     "inputs": [
         {
-            "name": "serverUrl",
+            "name": "projectUrl",
             "type": "string",
-            "label": "Server base URL",
-            "defaultValue": "https://cloud.icescrum.com/",
+            "label": "Project URL",
+            "defaultValue": "https://cloud.icescrum.com/p/PEETIC",
             "required": true,
-            "helpMarkDown": "This is your iceScrum server base URL. Leave default value if you use iceScrum Cloud."
-        },
-        {
-            "name": "projectName",
-            "type": "string",
-            "label": "Project Name",
-            "defaultValue": "PEETIC",
-            "required": true,
-            "helpMarkDown": "This is your iceScrum project key. It is part of the URL of your iceScrum project dahsboard."
+            "helpMarkDown": "This is your iceScrum project URL."
         },
         {
             "name": "accessToken",
