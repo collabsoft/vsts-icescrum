@@ -6,39 +6,39 @@ import * as httpm from 'typed-rest-client/HttpClient';
 import ifm from 'typed-rest-client/Interfaces';
 
 async function run() {
-    // Retrieve parameters and environment variables
+    // Retrieve build parameters and environment variables
     const serverUrl: string = tl.getInput('serverUrl', true);
     const projectName: string = tl.getInput('projectName', true);
     const accessToken: string = tl.getInput('accessToken', true);
     const maxChanges: string = tl.getInput('maxChanges', false);
     const personnalAccessToken: string = tl.getInput('personnalAccessToken', false);
+    
+    // Retrieve environment variables
+    const buildID: number = +tl.getVariable('build.buildId');
+    const releaseId: number = +tl.getVariable('release.releaseId');
+    const collectionUrl: string = tl.getVariable('system.teamFoundationCollectionUri');
+    const teamProject: string = tl.getVariable('system.teamProject');
 
-    // TODO: retrieve from environment
-    const buildID: number = 9;
-    const releaseId: number | undefined = undefined;
-    const collectionUrl: string = "https://freestylecoco.visualstudio.com/defaultcollection";
-    const teamProject: string = "MyFirstProject-CI"
-
-    console.log('[input] serverUrl: ' + serverUrl);
-    console.log('[input] projectName: ' + projectName);
-    console.log('[input] accessToken: ' + accessToken);
-    console.log('[input] maxChanges: ' + maxChanges);
-    console.log('[input] personnalAccessToken: ' + personnalAccessToken);
-    console.log('[input] buildID: ' + buildID);
-    console.log('[input] releaseId: ' + releaseId);
-    console.log('[input] collectionUrl: ' + collectionUrl);
-    console.log('[input] teamProject: ' + teamProject);
-    console.log('[input] getVariables: ' + tl.getVariables().toString());
+    tl.debug('[input] serverUrl: ' + serverUrl);
+    tl.debug('[input] projectName: ' + projectName);
+    tl.debug('[input] accessToken: ' + accessToken);
+    tl.debug('[input] maxChanges: ' + maxChanges);
+    tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
+    tl.debug('[input] buildID: ' + buildID);
+    tl.debug('[input] releaseId: ' + releaseId);
+    tl.debug('[input] collectionUrl: ' + collectionUrl);
+    tl.debug('[input] teamProject: ' + teamProject);
+    tl.debug('[input] getVariables: ' + JSON.stringify(tl.getVariables()));
 
     // Prepare authentication with PAT
     let token: string;
     if (personnalAccessToken) {
         token = personnalAccessToken;
-        console.log('[icescrum] user provided PAT: ' + token);
+        tl.debug('[icescrum] vsts API will use user provided PAT');
     } else {
         let auth: tl.EndpointAuthorization = tl.getEndpointAuthorization("SYSTEMVSSCONNECTION", false);
         token = auth.parameters["AccessToken"];
-        console.log('[icescrum] system PAT: ' + token);
+        tl.debug('[icescrum] vsts API will use system PAT');
     }
     let authHandler = vsts.getPersonalAccessTokenHandler(token);
 
@@ -46,22 +46,22 @@ async function run() {
     let connection = new vsts.WebApi(collectionUrl, authHandler);
     let vstsBuild: ba.IBuildApi = await connection.getBuildApi();
     let build: bi.Build = await vstsBuild.getBuild(buildID, teamProject);
-    let changes: bi.Change[] = await vstsBuild.getBuildChanges(teamProject, buildID);
+    let changes: bi.Change[] = await vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
 
     // Parse iceScrum tasks references in commits/changeset
     let regexp: RegExp = /T(\d+)[^0-9]/g
     let corresp;
     let tasks: number[] = []
     changes.forEach((change: bi.Change) => {
-        console.log('[icescrum] include commits/changeset: ' + change.id + 'with message: ' + change.message);
+        tl.debug('[icescrum] include commits/changeset: ' + change.id + 'with message: ' + change.message);
         while ((corresp = regexp.exec(change.message)) !== null) {
             tasks.push(+corresp[1]);
         }
     });
     if (tasks.length > 0) {
-        console.log('[icescrum] found tasks: ' + tasks)
+        tl.debug('[icescrum] found tasks: ' + tasks)
     } else {
-        console.log('[icescrum] no tasks in build associated commits / changeset')
+        tl.debug('[icescrum] no tasks in build associated commits / changeset')
     }
 
     // Format build info for iceScrum
@@ -72,7 +72,7 @@ async function run() {
             'jobName': build.definition.name,
             'name': build.definition.name,
             'number': buildID,
-            'result': build.result,
+            'status': build.result,
             'tasks': tasks,
             'url': build._links.web.href
         }
@@ -80,18 +80,22 @@ async function run() {
 
     // Post build info to iceScrum
     const projectUrl = serverUrl + '/ws/project/' + projectName + '/build/vsts';
-    console.log('[icescrum] post to icescrum url: ' + projectUrl);
-    console.log('[icescrum] post to icescrum data: ' + JSON.stringify(builds));
+    tl.debug('[icescrum] post to icescrum url: ' + projectUrl);
+    tl.debug('[icescrum] post to icescrum data: ' + JSON.stringify(builds));
     let _http: httpm.HttpClient = new httpm.HttpClient('icescrum-http-client');
     let requestHeaders: any = {
         'x-icescrum-token': accessToken,
         'Content-Type': 'application/json'
     }
     let res: httpm.HttpClientResponse = await _http.post(projectUrl, JSON.stringify(builds), requestHeaders);
-    console.log('[icescrum] post response status code is: ' + res.message.statusCode);
-    console.log('[icescrum] post response status message: ' + res.message.statusMessage);
     let body: string = await res.readBody();
-    console.log('[icescrum] post response body: ' + body);
+    if ((res.message.statusCode !== 200) && (res.message.statusCode !==201)) {
+        tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
+        tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
+        tl.error('[icescrum] post response body: ' + body);
+    } else {
+        tl.debug('[icescrum] post response status ' + res.message.statusCode + ' - ' + res.message.statusMessage)
+    }
 }
 
 run();
