@@ -18,6 +18,7 @@ async function run() {
     const releaseId: number = +tl.getVariable('release.releaseId');
     const collectionUrl: string = tl.getVariable('system.teamFoundationCollectionUri');
     const teamProject: string = tl.getVariable('system.teamProject');
+    const jobStatus: string = tl.getVariable('agent.jobstatus');
 
     tl.debug('[input] serverUrl: ' + serverUrl);
     tl.debug('[input] projectName: ' + projectName);
@@ -28,6 +29,7 @@ async function run() {
     tl.debug('[input] releaseId: ' + releaseId);
     tl.debug('[input] collectionUrl: ' + collectionUrl);
     tl.debug('[input] teamProject: ' + teamProject);
+    tl.debug('[input] jobStatus: ' + jobStatus);
     tl.debug('[input] getVariables: ' + JSON.stringify(tl.getVariables()));
 
     // Prepare authentication with PAT
@@ -72,7 +74,7 @@ async function run() {
             'jobName': build.definition.name,
             'name': build.definition.name,
             'number': buildID,
-            'status': build.result,
+            'status': jobStatus,
             'tasks': tasks,
             'url': build._links.web.href
         }
@@ -93,6 +95,7 @@ async function run() {
         tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
         tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
         tl.error('[icescrum] post response body: ' + body);
+        tl.setResult(tl.TaskResult.Failed, 'Failed to notify build status to iceScrum: ' + res.message.statusMessage);
     } else {
         tl.debug('[icescrum] post response status ' + res.message.statusCode + ' - ' + res.message.statusMessage)
     }
