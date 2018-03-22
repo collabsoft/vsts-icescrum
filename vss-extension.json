@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum extension",
-    "version": "0.2.3",
+    "version": "0.3.0",
     "publisher": "kagilum",
     "description": "iceScrum is an opensource scrum tool for agile software development",
     "targets": [
@@ -45,23 +45,10 @@
     },
     "files": [
         {
-            "path": "notifyIceScrumTSTask"
-        },
-        {
-            "path": "notifyIceScrumPSTask"
+            "path": "notifyIceScrumTask"
         }
     ],
     "contributions": [
-        {
-            "id": "icescrum-build-notify-ps",
-            "type": "ms.vss-distributed-task.task",
-            "targets": [
-                "ms.vss-distributed-task.tasks"
-            ],
-            "properties": {
-                "name": "notifyIceScrumPSTask"
-            }
-        },
         {
             "id": "icescrum-build-notify",
             "type": "ms.vss-distributed-task.task",
@@ -69,7 +56,7 @@
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "notifyIceScrumTSTask"
+                "name": "notifyIceScrumTask"
             }
         }
     ]

@@ -1,6 +1,6 @@
 {
-  "name": "notifyicescrumtstask",
-  "version": "0.2.2",
+  "name": "notifyicescrumtask",
+  "version": "0.3.0",
   "main": "notifyIceScrum.js",
   "dependencies": {
     "typed-rest-client": "^1.0.7",

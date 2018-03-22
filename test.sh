@@ -8,4 +8,4 @@ export BUILD_BUILDID="17"
 export SYSTEM_TEAMPROJECT="MyFirstProject-CI"
 export SYSTEM_TEAMFOUNDATIONCOLLECTIONURI="https://freestylecoco.visualstudio.com/"
 # run task
-node ./notifyIceScrumTSTask/notifyIceScrum.js
+node ./notifyIceScrumTask/notifyIceScrum.js

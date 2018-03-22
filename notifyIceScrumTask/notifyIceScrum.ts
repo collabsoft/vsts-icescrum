@@ -104,7 +104,6 @@ async function run() {
     }
     let res: httpm.HttpClientResponse = await _http.post(projectUrl, JSON.stringify(builds), requestHeaders);
     let body: string = await res.readBody();
-    
     if (res.message.statusCode === 503) {
         tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
         tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
