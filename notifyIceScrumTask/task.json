@@ -11,8 +11,8 @@
     "author": "Kagilum",
     "version": {
         "Major": 0,
-        "Minor": 2,
-        "Patch": 3
+        "Minor": 3,
+        "Patch": 0
     },
     "instanceNameFormat": "Notify iceScrum",
     "groups": [
@@ -40,21 +40,12 @@
             "helpMarkDown": "Learn how to generate an iceScrum access token: https://www.icescrum.com/documentation/rest-api/#authentication"
         },
         {
-            "name": "maxChanges",
-            "type": "integer",
-            "label": "Maximum Changeset/Commits to return",
-            "defaultValue": "99",
-            "required": false,
-            "helpMarkDown": "The maximum number of Changesets/Commits to send to iceScrum",
-            "groupName": "advanced"
-        },
-        {
             "name": "personnalAccessToken",
             "type": "string",
             "label": "Personnal Access Token",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Provide a Personnal access to token for use internal API calls. Here for testing extension.",
+            "helpMarkDown": "Provide a Personnal access to token for use internal API calls. Here for testing the extension.",
             "groupName": "advanced"
         }
     ],
