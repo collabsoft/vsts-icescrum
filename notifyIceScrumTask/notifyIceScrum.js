@@ -23,7 +23,6 @@ function run() {
         // Retrieve build parameters and environment variables
         let projectUrl = tl.getInput('projectUrl', true);
         const accessToken = tl.getInput('accessToken', true);
-        const maxChanges = tl.getInput('maxChanges', false);
         const personnalAccessToken = tl.getInput('personnalAccessToken', false);
         // Retrieve environment variables
         const buildID = +tl.getVariable('build.buildId');
@@ -33,14 +32,12 @@ function run() {
         const jobStatus = tl.getVariable('agent.jobstatus');
         tl.debug('[input] projectUrl: ' + projectUrl);
         tl.debug('[input] accessToken: ' + accessToken);
-        tl.debug('[input] maxChanges: ' + maxChanges);
         tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
         tl.debug('[input] buildID: ' + buildID);
         tl.debug('[input] releaseId: ' + releaseId);
         tl.debug('[input] collectionUrl: ' + collectionUrl);
         tl.debug('[input] teamProject: ' + teamProject);
         tl.debug('[input] jobStatus: ' + jobStatus);
-        tl.debug('[input] getVariables: ' + JSON.stringify(tl.getVariables()));
         // Prepare authentication with PAT
         let token;
         if (personnalAccessToken) {
@@ -57,7 +54,7 @@ function run() {
         let connection = new vsts.WebApi(collectionUrl, authHandler);
         let vstsBuild = yield connection.getBuildApi();
         let build = yield vstsBuild.getBuild(buildID, teamProject);
-        let changes = yield vstsBuild.getBuildChanges(teamProject, buildID); // Todo: use max changes ?
+        let changes = yield vstsBuild.getBuildChanges(teamProject, buildID);
         // Parse iceScrum tasks references in commits/changeset
         let taskRegexp = /T(\d+)([^0-9]|$)/g;
         let corresp;
