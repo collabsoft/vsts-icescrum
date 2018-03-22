@@ -4,7 +4,7 @@
 
 Share your vision to help your teams deliver value and plan milestones with confidence thanks to a rigorous empirical approach. Communicate clear requirements to the development teams to shorten your time to market and maximize the return on investment. Leverage visual management to structure day to day team activities, track progress and monitor key indicators of success.
 
-**Enjoy a tight integration with your development environment in Visual Studio Team Services**
+**Enjoy a tight integration with your development environment in Visual Studio Team Services.**
 
 ## Control over your agile taskboard directly from developper commits
 Reference and move iceScrum task from commits messages, whether using Git or Team Foundation Version Control.
