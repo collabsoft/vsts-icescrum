@@ -1,17 +1,17 @@
 {
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
-    "name": "iceScrum extension",
-    "version": "0.3.4",
+    "name": "iceScrum",
+    "version": "0.3.6",
     "publisher": "kagilum",
-    "description": "iceScrum is an opensource scrum tool for agile software development",
+    "description": "iceScrum for VSTS and TFS helps you to integrate iceScrum with your Microsoft environment and follow issues, commits & builds directly in iceScrum.",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
     "categories": [
-        "Plan and track"
+        "Integrate"
     ],
     "tags": [
         "agile",
