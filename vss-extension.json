@@ -77,7 +77,7 @@
             ],
             "properties": {
               "id": "icescrum-servicehook-commit",
-              "name": "iceScrum",
+              "name": "IceScrum",
               "description": "Control over your agile taskboard directly from commits & link them on your tasks & stories.",
               "informationUrl": "https://www.icescrum.com/documentation/git-svn/#vsts",
               "inputDescriptors": [
