@@ -18,6 +18,9 @@ npm-debug.log
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# VSTS credential for test.sh
+PAT.txt
+
 # ?
 .DS_Store
 .taskkey
