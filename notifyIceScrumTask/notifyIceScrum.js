@@ -104,7 +104,7 @@ function run() {
             'x-icescrum-token': accessToken,
             'Content-Type': 'application/json'
         };
-        let res = yield _http.post(projectUrl, JSON.stringify(builds), requestHeaders);
+        let res = yield _http.post(postUrl, JSON.stringify(builds), requestHeaders);
         let body = yield res.readBody();
         if (res.message.statusCode === 503) {
             tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
