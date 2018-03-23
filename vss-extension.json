@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "publisher": "kagilum",
     "description": "iceScrum for VSTS and TFS helps you to integrate iceScrum with your Microsoft environment and follow issues, commits & builds directly in iceScrum.",
     "targets": [
@@ -78,13 +78,13 @@
             "properties": {
               "id": "icescrum-servicehook-commit",
               "name": "iceScrum",
-              "description": "Provides integration with iceScrum",
+              "description": "Control over your agile taskboard directly from commits & link them on your tasks & stories",
               "informationUrl": "https://www.icescrum.com/documentation/git-svn/#vsts",
               "inputDescriptors": [
                 {
                   "id": "url",
                   "name": "URL",
-                  "description": "iceScrum URL to post event payload to",
+                  "description": "iceScrum rest API endpoint for VSTS commits. Replace your server URL and project key in this sample: 'https://cloud.icescrum.com/ws/project/PEETIC/commit/vsts'",
                   "inputMode": "textbox",
                   "validation": {
                     "dataType": "string",

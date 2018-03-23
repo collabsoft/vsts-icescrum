@@ -1,6 +1,6 @@
 {
   "name": "vsts-icescrum",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "iceScrum extension for Visual Studio Team Service.",
   "main": "index.js",
   "dependencies": {
