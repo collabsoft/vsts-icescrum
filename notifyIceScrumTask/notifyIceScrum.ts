@@ -8,24 +8,15 @@ import ifm from 'typed-rest-client/Interfaces';
 async function run() {
     // Retrieve build parameters and environment variables
     let projectUrl: string = tl.getInput('projectUrl', true);
-    const accessToken: string = tl.getInput('accessToken', true);
-    const personnalAccessToken: string = tl.getInput('personnalAccessToken', false);
 
     // Retrieve environment variables
+    const accessToken: string = tl.getVariable('icescrum.accessToken');
+    const personnalAccessToken: string = tl.getVariable('test.personnalAccessToken');
     const buildID: number = +tl.getVariable('build.buildId');
     const releaseId: number = +tl.getVariable('release.releaseId');
     const collectionUrl: string = tl.getVariable('system.teamFoundationCollectionUri');
     const teamProject: string = tl.getVariable('system.teamProject');
     const jobStatus: string = tl.getVariable('agent.jobstatus');
-
-    tl.debug('[input] projectUrl: ' + projectUrl);
-    tl.debug('[input] accessToken: ' + accessToken);
-    tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
-    tl.debug('[input] buildID: ' + buildID);
-    tl.debug('[input] releaseId: ' + releaseId);
-    tl.debug('[input] collectionUrl: ' + collectionUrl);
-    tl.debug('[input] teamProject: ' + teamProject);
-    tl.debug('[input] jobStatus: ' + jobStatus);
 
     // Prepare authentication with PAT
     let token: string;
@@ -38,6 +29,11 @@ async function run() {
         tl.debug('[icescrum] vsts API will use system PAT');
     }
     let authHandler = vsts.getPersonalAccessTokenHandler(token);
+
+    // Make sur iceScrum access token is available
+    if(!accessToken){
+        tl.setResult(tl.TaskResult.Failed, `iceScrum access token not provided in build variable "icescrum.accessToken"`);
+    }
 
     // Get build and chandes info from VSTS API
     let connection = new vsts.WebApi(collectionUrl, authHandler);

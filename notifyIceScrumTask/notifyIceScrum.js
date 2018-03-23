@@ -22,22 +22,14 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         // Retrieve build parameters and environment variables
         let projectUrl = tl.getInput('projectUrl', true);
-        const accessToken = tl.getInput('accessToken', true);
-        const personnalAccessToken = tl.getInput('personnalAccessToken', false);
         // Retrieve environment variables
+        const accessToken = tl.getVariable('icescrum.accessToken');
+        const personnalAccessToken = tl.getVariable('test.personnalAccessToken');
         const buildID = +tl.getVariable('build.buildId');
         const releaseId = +tl.getVariable('release.releaseId');
         const collectionUrl = tl.getVariable('system.teamFoundationCollectionUri');
         const teamProject = tl.getVariable('system.teamProject');
         const jobStatus = tl.getVariable('agent.jobstatus');
-        tl.debug('[input] projectUrl: ' + projectUrl);
-        tl.debug('[input] accessToken: ' + accessToken);
-        tl.debug('[input] personnalAccessToken: ' + personnalAccessToken);
-        tl.debug('[input] buildID: ' + buildID);
-        tl.debug('[input] releaseId: ' + releaseId);
-        tl.debug('[input] collectionUrl: ' + collectionUrl);
-        tl.debug('[input] teamProject: ' + teamProject);
-        tl.debug('[input] jobStatus: ' + jobStatus);
         // Prepare authentication with PAT
         let token;
         if (personnalAccessToken) {
@@ -50,6 +42,10 @@ function run() {
             tl.debug('[icescrum] vsts API will use system PAT');
         }
         let authHandler = vsts.getPersonalAccessTokenHandler(token);
+        // Make sur iceScrum access token is available
+        if (!accessToken) {
+            tl.setResult(tl.TaskResult.Failed, `iceScrum access token not provided in build variable "icescrum.accessToken"`);
+        }
         // Get build and chandes info from VSTS API
         let connection = new vsts.WebApi(collectionUrl, authHandler);
         let vstsBuild = yield connection.getBuildApi();

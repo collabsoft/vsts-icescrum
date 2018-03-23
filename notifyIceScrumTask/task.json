@@ -30,23 +30,6 @@
             "defaultValue": "https://cloud.icescrum.com/p/PEETIC",
             "required": true,
             "helpMarkDown": "This is your iceScrum project URL."
-        },
-        {
-            "name": "accessToken",
-            "type": "string",
-            "label": "Access token",
-            "defaultValue": "",
-            "required": true,
-            "helpMarkDown": "Learn how to generate an iceScrum access token: https://www.icescrum.com/documentation/rest-api/#authentication"
-        },
-        {
-            "name": "personnalAccessToken",
-            "type": "string",
-            "label": "Personnal Access Token",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Provide a Personnal access to token for use internal API calls. Here for testing the extension.",
-            "groupName": "advanced"
         }
     ],
     "execution": {
