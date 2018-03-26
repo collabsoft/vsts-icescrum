@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "./test.sh",
-    "preinstall": "tsc",
-    "install": "tfx extension create --manifest-globs vss-extension.json --rev-version"
+    "build": "tsc",
+    "install": "npm run build && tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
   "author": "Kagilum",
   "license": "MIT",
