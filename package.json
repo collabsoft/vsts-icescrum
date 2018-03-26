@@ -1,6 +1,6 @@
 {
   "name": "vsts-icescrum",
-  "version": "0.4.8",
+  "version": "1.0.0",
   "description": "iceScrum extension for Visual Studio Team Service.",
   "main": "index.js",
   "dependencies": {
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "npm run compile && ./test.sh",
     "compile": "tsc",
-    "build": "npm install && npm run compile && tfx extension create --manifest-globs vss-extension.json --rev-version"
+    "build": "npm install && npm run compile && tfx extension create --manifest-globs vss-extension.json"
   },
   "author": "Kagilum",
   "license": "MIT",

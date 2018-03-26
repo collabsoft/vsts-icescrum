@@ -10,9 +10,9 @@
     ],
     "author": "Kagilum",
     "version": {
-        "Major": 0,
-        "Minor": 4,
-        "Patch": 4
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
     },
     "instanceNameFormat": "Notify iceScrum",
     "groups": [
