@@ -1,4 +1,3 @@
-tsc
 # simulate inputs
 export INPUT_PROJECTURL="http://localhost:8080/icescrum/p/PETA/"
 export ICESCRUM_ACCESSTOKEN="cee81337d3df43fcb323c141acc8e206"

@@ -9,15 +9,12 @@
   "devDependencies": {
     "@types/node": "^9.4.7",
     "@types/q": "^1.0.7",
-    "typescript": "^2.7.2",
-    "typed-rest-client": "^1.0.7",
-    "vso-node-api": "^6.3.2",
-    "vsts-task-lib": "^2.3.0"
+    "typescript": "^2.7.2"
   },
   "scripts": {
-    "test": "./test.sh",
-    "build": "tsc",
-    "install": "npm run build && tfx extension create --manifest-globs vss-extension.json --rev-version"
+    "test": "npm run compile && ./test.sh",
+    "compile": "tsc",
+    "build": "npm install && npm run compile && tfx extension create --manifest-globs vss-extension.json --rev-version"
   },
   "author": "Kagilum",
   "license": "MIT",
