@@ -31,7 +31,7 @@ async function run() {
     let authHandler = vsts.getPersonalAccessTokenHandler(token);
 
     // Make sure iceScrum access token is available
-    if(!accessToken){
+    if (!accessToken) {
         tl.setResult(tl.TaskResult.Failed, `iceScrum access token not provided in build variable "icescrum.accessToken"`);
     }
 
