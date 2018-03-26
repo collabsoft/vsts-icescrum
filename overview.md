@@ -27,6 +27,6 @@ This extension lets you configure a new type of build task that provides iceScru
 More info at: https://www.icescrum.com/documentation/continuous-integration-2/#vsts
 
 # Synchronise work items with your iceScrum user stories.
-Import quickly you work items from Visual Studio Team Services in order to follow the evolution of your stories over time in iceScrum. Keep work items status updated in Visual Studio Team Services with powerful iceScrum synchronisation services.
+Import quickly you work items from Visual Studio Team Services in order to follow the evolution of your stories over time in iceScrum. Keep work items status updated in Visual Studio Team Services with powerful iceScrum synchronization services.
 
 More info at: https://www.icescrum.com/documentation/bug-trackers/#principles
