@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "publisher": "kagilum",
     "description": "iceScrum for VSTS and TFS helps you integrate iceScrum with your Microsoft environment and follow issues, commits & builds directly in iceScrum.",
     "targets": [
@@ -83,8 +83,8 @@
               "inputDescriptors": [
                 {
                   "id": "url",
-                  "name": "iceScrum API URL (For iceScrum cloud, just replace MYPROJECT by your project key in the default value)",
-                  "description": "iceScrum REST API endpoint for VSTS commits. Replace your server URL and project key in the sample value. It requires to have the Visual Studio Team Services Commits App enabled for your iceScrum project.",
+                  "name": "iceScrum API URL. Only HTTPS is supported (Get <a href='https://www.icescrum.com/documentation/git-svn/#vsts_2'>more information.</a>)",
+                  "description": "iceScrum REST API endpoint for VSTS commits. Replace your server URL and project key in the sample value (For iceScrum cloud, just replace MYPROJECT by your project key in the default value). It requires to have the Visual Studio Team Services code App enabled for your iceScrum project.",
                   "inputMode": "textbox",
                   "validation": {
                     "dataType": "string",
