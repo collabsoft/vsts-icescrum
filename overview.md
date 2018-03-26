@@ -5,9 +5,7 @@
 
 Share your vision to help your teams deliver value and plan milestones with confidence thanks to a rigorous empirical approach. Communicate clear requirements to the development teams and leverage visual management to structure day to day team activities and track progress and monitor key indicators of success. 
 
-Let a true agile tool guide you through your agile transformation!
-
-**Enjoy a tight integration with your development environment in Visual Studio Team Services & Team Foundation Server.**
+**Let a true agile tool guide you through your agile transformation and enjoy a tight integration with your development environment in Visual Studio Team Services & Team Foundation Server.**
 
 # Take control over your agile taskboard directly from commits & link them on your tasks & stories
 Reference and move iceScrum tasks from commits messages, whether using Git or Team Foundation Version Control.
