@@ -102,6 +102,11 @@ async function run() {
         tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
         tl.error('[icescrum] post response body: ' + body);
         tl.setResult(tl.TaskResult.Failed, 'Failed to notify build status to iceScrum: make sure the VSTS-CI app is enabled on your iceScrum project.');
+    } else if (res.message.statusCode === 403) {
+        tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
+        tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
+        tl.error('[icescrum] post response body: ' + body);
+        tl.setResult(tl.TaskResult.Failed, 'Failed to notify build status to iceScrum: verify iceScrum project URL and the access Token.');
     } else if ((res.message.statusCode !== 200) && (res.message.statusCode !== 201)) {
         tl.error('[icescrum] post response status code is: ' + res.message.statusCode);
         tl.error('[icescrum] post response status message: ' + res.message.statusMessage);
