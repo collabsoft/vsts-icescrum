@@ -29,5 +29,5 @@ npm test
 ## package extension
 package vsix extension with vss-web-extension-sdk (auto increment version)
 ```
-npm build
+npm run build
 ```
