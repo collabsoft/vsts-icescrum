@@ -21,6 +21,9 @@ npm-debug.log
 # VSTS credential for test.sh
 PAT.txt
 
+# Compiled TS
+*.js
+
 # ?
 .DS_Store
 .taskkey
