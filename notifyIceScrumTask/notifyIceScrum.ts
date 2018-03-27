@@ -60,7 +60,7 @@ async function run() {
     // Format build info for iceScrum
     let builds: any = {
         build: {
-            'builtOn': 'vsts',
+            'builtOn': 'vsts-ci',
             'date': build.startTime,
             'jobName': build.definition.name,
             'name': build.definition.name,
