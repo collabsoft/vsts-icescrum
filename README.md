@@ -27,7 +27,8 @@ npm test
 ```
 
 ## package extension
-package vsix extension with vss-web-extension-sdk (auto increment version)
+package vsix extension with vss-web-extension-sdk.
+*The version number is taken vss-extension.json*
 ```
 npm run build
 ```
