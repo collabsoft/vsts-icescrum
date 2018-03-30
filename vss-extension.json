@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "kagilum",
     "description": "iceScrum for VSTS and TFS helps you integrate iceScrum with your Microsoft environment and follow issues, commits & builds directly in iceScrum.",
     "public": true,
@@ -32,7 +32,7 @@
         }
     ],
     "icons": {
-        "default": "images/icescrum-logo.jpg"
+        "default": "images/icescrum-logo.png"
     },
     "content": {
         "details": {
@@ -79,12 +79,12 @@
             "properties": {
               "id": "icescrum-servicehook-commit",
               "name": "IceScrum",
-              "description": "Control over your agile taskboard directly from commits & link them on your tasks & stories.",
+              "description": "Control over your agile taskboard directly from commits & link them on your tasks & stories. This extension supports only calls to HTTPS iceScrum servers. If your iceScrum server is not secured, you can achieve the same behaviour by using a service web hook. <a href='https://www.icescrum.com/documentation/git-svn/#vsts_2'>How to configure a service web hook for iceScrum.</a>",
               "informationUrl": "https://www.icescrum.com/documentation/git-svn/#vsts",
               "inputDescriptors": [
                 {
                   "id": "url",
-                  "name": "iceScrum API URL. Only HTTPS is supported (Get <a href='https://www.icescrum.com/documentation/git-svn/#vsts_2'>more information.</a>)",
+                  "name": "iceScrum API URL. Only HTTPS is supported (<a href='https://www.icescrum.com/documentation/git-svn/#vsts_2'>More information.</a>)",
                   "description": "iceScrum REST API endpoint for VSTS commits. Replace your server URL and project key in the sample value (For iceScrum cloud, just replace MYPROJECT by your project key in the default value). It requires to have the Visual Studio Team Services code App enabled for your iceScrum project.",
                   "inputMode": "textbox",
                   "validation": {
