@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "icescrum-build-notify",
     "name": "iceScrum",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publisher": "kagilum",
     "description": "iceScrum for VSTS and TFS helps you integrate iceScrum with your Microsoft environment and follow issues, commits & builds directly in iceScrum.",
     "public": true,
@@ -32,7 +32,7 @@
         }
     ],
     "icons": {
-        "default": "images/icescrum-logo.png"
+        "default": "images/iceScrum-icon-white-border.png"
     },
     "content": {
         "details": {
